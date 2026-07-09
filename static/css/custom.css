@@ -346,31 +346,21 @@ body {
 }
 .tags a:hover { color: var(--accent); border-color: var(--accent); }
 
-/* ------------------------------------------------------------- resource */
+/* ------------------------------------------------- resource (format lien) */
 .resource {
-    margin: 0 0 .9rem; padding: .85rem 1rem;
-    background: var(--panel-2); border: 1px solid var(--border);
-    border-left: 3px solid var(--accent); border-radius: var(--radius);
+    display: flex; flex-wrap: wrap; align-items: baseline; gap: .5rem;
+    margin: 0; padding: .5rem 0;
+    border-bottom: 1px solid var(--border);
 }
-.resource__head { display: flex; flex-wrap: wrap; align-items: baseline; gap: .5rem; }
-.resource__title { font-weight: 600; text-decoration: none; font-size: 1rem; }
-.resource__title[target]::after { content: " ↗"; color: var(--faint); font-size: .8em; }
+.resource__link { font-weight: 500; text-decoration: none; }
+.resource__link::before { content: "→ "; color: var(--faint); }
+.resource__link[target]::after { content: " ↗"; color: var(--faint); font-size: .8em; }
+.resource__desc { color: var(--muted); font-size: .84rem; }
+.resource__desc p { display: inline; margin: 0; }
 .resource__type {
-    margin-left: auto; color: var(--warn); font-size: .7rem; text-transform: uppercase;
-    letter-spacing: .06em; border: 1px solid var(--border-2); border-radius: 999px; padding: 0 .5rem;
+    margin-left: auto; color: var(--faint); font-size: .72rem;
+    text-transform: uppercase; letter-spacing: .05em;
 }
-.resource__type[data-type="repo"]   { color: var(--accent); }
-.resource__type[data-type="outil"]  { color: var(--accent2); }
-.resource__type[data-type="site"]   { color: var(--link); }
-.resource__type[data-type="cours"]  { color: var(--hl); }
-.resource__type[data-type="video"]  { color: var(--danger); }
-.resource__desc { color: var(--muted); font-size: .88rem; line-height: 1.5; margin: .4rem 0 0; }
-.resource__desc p { margin: 0; }
-.resource__desc p + p { margin-top: .4rem; }
-.resource__tags { list-style: none; display: flex; flex-wrap: wrap; gap: .5rem; margin: .5rem 0 0; padding: 0; }
-.resource__tags li::marker { content: none; }
-.resource__tags li { color: var(--faint); font-size: .74rem; }
-
 /* -------------------------------------------------------------- callouts */
 .callout {
     margin: 1.2rem 0; padding: .8rem 1rem; border-radius: var(--radius);
