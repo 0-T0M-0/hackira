@@ -1,0 +1,53 @@
+{{ define "main" }}
+<article class="doc">
+    <header class="doc__header">
+        {{- partial "breadcrumbs.html" . -}}
+        <h1 class="doc__title">{{ .Title | markdownify }}</h1>
+        {{- with .Params.description }}<p class="doc__desc">{{ . | markdownify }}</p>{{ end -}}
+    </header>
+
+    <div class="doc__body">
+        {{ .Content }}
+
+        {{- if eq .Kind "taxonomy" -}}
+            {{/* Index d'une taxonomie : liste des termes (ex : tous les tags) */}}
+            <ul class="termlist">
+            {{- range .Pages.ByTitle -}}
+                <li><a href="{{ .RelPermalink }}">#{{ .Title }}</a> <span class="termlist__count">{{ len .Pages }}</span></li>
+            {{- end -}}
+            </ul>
+        {{- else -}}
+            {{- $dirs := where .Pages "Kind" "section" -}}
+            {{- $files := where .Pages "Kind" "page" -}}
+
+            {{- with $dirs -}}
+            <div class="cardgrid">
+                {{- range .ByWeight -}}
+                <a class="card card--dir" href="{{ .RelPermalink }}">
+                    <span class="card__kind">{{ with .Params.icon }}{{ . }} {{ end }}dossier</span>
+                    <h3 class="card__title">{{ .Title }}</h3>
+                    {{- with .Params.description }}<p class="card__desc">{{ . | markdownify }}</p>{{ end -}}
+                    <span class="card__meta">{{ len .RegularPagesRecursive }} fiches →</span>
+                </a>
+                {{- end -}}
+            </div>
+            {{- end -}}
+
+            {{- with $files -}}
+            <ul class="pagelist">
+                {{- range .ByWeight -}}
+                <li class="pagelist__item">
+                    <a class="pagelist__link" href="{{ .RelPermalink }}">{{ .Title }}</a>
+                    {{- with .Params.description }}<span class="pagelist__desc">{{ . | markdownify }}</span>{{ end -}}
+                </li>
+                {{- end -}}
+            </ul>
+            {{- end -}}
+
+            {{- if not (or $dirs $files) -}}
+                <p class="muted">Cette section est encore vide. Ajoute un fichier <code>.md</code> dans <code>content/{{ .Section }}/</code>.</p>
+            {{- end -}}
+        {{- end -}}
+    </div>
+</article>
+{{ end }}

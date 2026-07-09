@@ -1,0 +1,85 @@
+# =============================================================================
+#  Configuration du site.  Doc : https://gohugo.io/getting-started/configuration/
+# =============================================================================
+
+# baseURL : le workflow GitHub Pages la remplace automatiquement au build
+# (--baseURL), donc la valeur ci-dessous ne sert qu'au dev local.
+# En prod, l'URL sera du type https://<user>.github.io/<nom-du-repo>/
+baseURL = "https://example.github.io/grimoire/"
+
+languageCode = "fr"
+defaultContentLanguage = "fr"
+
+# >>> À PERSONNALISER : le nom du projet (s'affiche dans le logo + les onglets)
+title = "grimoire"
+
+theme = "risotto"
+
+enableInlineShortcodes = true
+enableGitInfo = false            # passe à true si tu veux afficher la date de dernière modif (git)
+enableRobotsTXT = true
+summaryLength = 20
+
+[pagination]
+  pagerSize = 20
+
+# -----------------------------------------------------------------------------
+#  Taxonomies : des pages d'index automatiques par tag et par catégorie
+# -----------------------------------------------------------------------------
+[taxonomies]
+  tag = "tags"
+  category = "categories"
+
+# -----------------------------------------------------------------------------
+#  Paramètres du thème risotto + du site
+# -----------------------------------------------------------------------------
+[params]
+  noindex = false
+  # Lien "éditer cette page" (pratique à deux). Laisse vide pour le masquer.
+  # >>> À PERSONNALISER : remplace par l'URL de ton repo.
+  editURL = "https://github.com/USER/grimoire/edit/main/content/"
+  repoURL = "https://github.com/USER/grimoire"
+
+  [params.theme]
+    # Palette par défaut (voir static/css/palettes/ et le README pour la liste).
+    # catppuccin-mocha est fournie en bonus ; tokyo-night-dark, dracula, gruvbox-dark... marchent aussi.
+    palette = "catppuccin-mocha"
+
+  # Bloc "marque" en haut de la barre latérale gauche
+  [params.about]
+    title = "grimoire"
+    description = "Veille **info** · **cyber** · **IA**. Repos, outils et liens, rangés."
+    # Logo emoji (ou logo_image = \"img/logo.svg\" pour une image dans static/)
+    logo = "📖"
+
+# -----------------------------------------------------------------------------
+#  Liens sociaux (bas de la barre latérale). Icônes : Font Awesome 6 / Academicons
+# -----------------------------------------------------------------------------
+[[params.socialLinks]]
+  icon = "fa-brands fa-github"
+  title = "GitHub"
+  url = "https://github.com/USER/grimoire"
+
+[[params.socialLinks]]
+  icon = "fa-solid fa-rss"
+  title = "RSS"
+  url = "/index.xml"
+
+# -----------------------------------------------------------------------------
+#  Markdown / rendu
+# -----------------------------------------------------------------------------
+[markup]
+  [markup.goldmark.renderer]
+    unsafe = true                # autorise le HTML inline dans le markdown
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 3
+    ordered = false
+  [markup.highlight]
+    noClasses = false            # coloration syntaxique pilotée par la palette (custom.css)
+    lineNos = false
+    tabWidth = 2
+
+[outputs]
+  home = ["HTML", "RSS"]
+  section = ["HTML", "RSS"]

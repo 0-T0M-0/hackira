@@ -1,0 +1,60 @@
+{{- /* Colonne de droite : infos contextuelles selon le type de page */ -}}
+<div class="pageinfo">
+
+{{- if .IsHome -}}
+    <p class="pageinfo__label">// veille</p>
+    {{- with site.Params.about.description }}<p class="pageinfo__lead">{{ . | markdownify }}</p>{{ end -}}
+    <dl class="stats">
+        <div class="stats__row"><dt>domaines</dt><dd>{{ len site.Home.Sections }}</dd></div>
+        <div class="stats__row"><dt>fiches</dt><dd>{{ len site.RegularPages }}</dd></div>
+        <div class="stats__row"><dt>tags</dt><dd>{{ len site.Taxonomies.tags }}</dd></div>
+    </dl>
+    <p class="pageinfo__label">// aller vite</p>
+    <ul class="pageinfo__links">
+        {{- range (where site.Home.Sections "Params.hidden" "!=" true).ByWeight -}}
+        <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+        {{- end -}}
+    </ul>
+
+{{- else if or .IsSection (eq .Kind "taxonomy") (eq .Kind "term") -}}
+    <p class="pageinfo__label">// section</p>
+    {{- with .Params.description }}<p class="pageinfo__lead">{{ . | markdownify }}</p>{{ end -}}
+    {{- $count := len .RegularPagesRecursive -}}
+    {{- if eq .Kind "term" }}{{ $count = len .Pages }}{{ end -}}
+    <dl class="stats">
+        <div class="stats__row"><dt>fiches</dt><dd>{{ $count }}</dd></div>
+    </dl>
+    {{- with .Sections -}}
+    <p class="pageinfo__label">// sous-sections</p>
+    <ul class="pageinfo__links">
+        {{- range .ByWeight -}}<li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>{{- end -}}
+    </ul>
+    {{- end -}}
+    {{- with .File -}}{{ with site.Params.editURL }}
+    <p class="pageinfo__edit"><a href="{{ . }}{{ $.File.Path }}">éditer cette page</a></p>
+    {{ end }}{{- end -}}
+
+{{- else -}}
+    {{- with .Params.description }}<p class="pageinfo__lead">{{ . | markdownify }}</p>{{ end -}}
+    {{- if or .Params.author (and .Date (not .Date.IsZero)) -}}
+    <dl class="stats">
+        {{- with .Params.author }}<div class="stats__row"><dt>par</dt><dd>{{ . }}</dd></div>{{ end -}}
+        {{- if and .Date (not .Date.IsZero) }}<div class="stats__row"><dt>maj</dt><dd>{{ .Date.Format "2006-01-02" }}</dd></div>{{ end -}}
+    </dl>
+    {{- end -}}
+    {{- with .Params.tags -}}
+    <p class="pageinfo__label">// tags</p>
+    <ul class="tags">
+        {{- range . -}}<li><a href="{{ (printf "/tags/%s" (. | urlize)) | relURL }}">#{{ . }}</a></li>{{- end -}}
+    </ul>
+    {{- end -}}
+    {{- if and .Params.toc .TableOfContents (ne (trim .TableOfContents " \n") "<nav id=\"TableOfContents\"></nav>") -}}
+    <p class="pageinfo__label">// sur cette page</p>
+    <div class="toc">{{ .TableOfContents }}</div>
+    {{- end -}}
+    {{- with .File -}}{{ with site.Params.editURL }}
+    <p class="pageinfo__edit"><a href="{{ . }}{{ $.File.Path }}">éditer cette page</a></p>
+    {{ end }}{{- end -}}
+{{- end -}}
+
+</div>

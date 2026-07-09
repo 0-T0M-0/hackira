@@ -1,0 +1,21 @@
+{{- /* Fiche ressource. Parametres : title, url, type (repo|outil|site|cours|video), tags. Corps rendu en Markdown. Voir le README pour un exemple. */ -}}
+{{- $url := .Get "url" -}}
+{{- $title := .Get "title" | default $url -}}
+{{- $type := .Get "type" | default "lien" -}}
+{{- $external := and $url (not (hasPrefix $url "/")) -}}
+<div class="resource resource--{{ $type | urlize }}">
+    <div class="resource__head">
+        {{- if $url -}}
+        <a class="resource__title" href="{{ $url }}"{{ if $external }} target="_blank" rel="noopener noreferrer"{{ end }}>{{ $title }}</a>
+        {{- else -}}
+        <span class="resource__title">{{ $title }}</span>
+        {{- end -}}
+        <span class="resource__type" data-type="{{ $type | urlize }}">{{ $type }}</span>
+    </div>
+    {{- with .Inner }}<div class="resource__desc">{{ . | markdownify }}</div>{{ end -}}
+    {{- with .Get "tags" -}}
+    <ul class="resource__tags">
+        {{- range (split . ",") -}}{{ with (trim . " ") }}<li>#{{ . }}</li>{{ end }}{{- end -}}
+    </ul>
+    {{- end -}}
+</div>

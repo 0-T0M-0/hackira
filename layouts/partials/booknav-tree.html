@@ -1,0 +1,32 @@
+{{- $node := .node -}}
+{{- $current := .current -}}
+{{- $level := .level -}}
+{{- $isCurrent := eq $node.RelPermalink $current.RelPermalink -}}
+{{- $dirs := (where $node.Pages "Kind" "section").ByWeight -}}
+{{- $files := (where $node.Pages "Kind" "page").ByWeight -}}
+{{- $hasChildren := or (gt (len $dirs) 0) (gt (len $files) 0) -}}
+
+{{- if $hasChildren -}}
+    {{- $open := or (eq $level 0) $isCurrent ($current.IsDescendant $node) -}}
+    <li class="booknav__item booknav__item--dir">
+        <details class="booknav__details"{{ if $open }} open{{ end }}>
+            <summary class="booknav__summary">
+                <a class="booknav__link booknav__link--dir{{ if $isCurrent }} active{{ end }}" href="{{ $node.RelPermalink }}">{{ $node.Title }}</a>
+            </summary>
+            <ul class="booknav__subtree">
+                {{- range $dirs -}}
+                    {{- partial "booknav-tree.html" (dict "node" . "current" $current "level" (add $level 1)) -}}
+                {{- end -}}
+                {{- range $files -}}
+                    <li class="booknav__item booknav__item--file">
+                        <a class="booknav__link{{ if eq .RelPermalink $current.RelPermalink }} active{{ end }}" href="{{ .RelPermalink }}">{{ .Title }}</a>
+                    </li>
+                {{- end -}}
+            </ul>
+        </details>
+    </li>
+{{- else -}}
+    <li class="booknav__item booknav__item--file">
+        <a class="booknav__link{{ if $isCurrent }} active{{ end }}" href="{{ $node.RelPermalink }}">{{ $node.Title }}</a>
+    </li>
+{{- end -}}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="{{ site.Language.Lang }}">
+
+<head>
+    {{- partial "head.html" . -}}
+</head>
+
+<body>
+    <a class="skip-link" href="#content">Aller au contenu</a>
+
+    <div class="book">
+        {{/* Bascule du menu sur mobile, sans JavaScript (astuce checkbox + label) */}}
+        <input type="checkbox" id="menu-toggle" class="menu-toggle" hidden aria-hidden="true">
+
+        <aside class="book__sidebar" aria-label="Navigation">
+            {{- partial "brand.html" . -}}
+            {{- partial "booknav.html" . -}}
+            {{- partial "sidebar-footer.html" . -}}
+        </aside>
+
+        <main id="content" class="book__content">
+            <label for="menu-toggle" class="menu-btn">☰&nbsp;sections</label>
+            {{- block "main" . }}{{ end -}}
+            <footer class="book__footer">
+                {{- partial "footer.html" . -}}
+            </footer>
+        </main>
+
+        <aside class="book__toc" aria-label="Informations">
+            {{- block "toc" . }}{{ partial "pageinfo.html" . }}{{ end -}}
+        </aside>
+    </div>
+</body>
+
+</html>

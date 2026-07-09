@@ -1,0 +1,9 @@
+{{- $current := . -}}
+<nav class="booknav" aria-label="Sections">
+    <p class="booknav__label">// sections</p>
+    <ul class="booknav__tree">
+        {{- range (where site.Home.Sections "Params.hidden" "!=" true).ByWeight -}}
+            {{- partial "booknav-tree.html" (dict "node" . "current" $current "level" 0) -}}
+        {{- end -}}
+    </ul>
+</nav>

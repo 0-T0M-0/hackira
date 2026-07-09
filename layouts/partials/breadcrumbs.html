@@ -1,0 +1,6 @@
+<nav class="breadcrumbs" aria-label="Fil d'ariane">
+    {{- range .Ancestors.Reverse -}}
+        <a class="breadcrumbs__link" href="{{ .RelPermalink }}">{{ if .IsHome }}~{{ else }}{{ .Title }}{{ end }}</a><span class="breadcrumbs__sep">/</span>
+    {{- end -}}
+    <span class="breadcrumbs__current">{{ .Title }}</span>
+</nav>

@@ -1,0 +1,35 @@
+{{ define "main" }}
+<section class="home">
+    <header class="home__hero">
+        <p class="home__prompt">$ ls ~/veille</p>
+        <h1 class="home__title">{{ site.Title }}<span class="brand__cursor" aria-hidden="true"></span></h1>
+        {{- with site.Params.about.description }}<p class="home__tagline">{{ . | markdownify }}</p>{{ end -}}
+    </header>
+
+    {{- with .Content }}<div class="home__intro">{{ . }}</div>{{ end -}}
+
+    <h2 class="home__h2">// domaines</h2>
+    <div class="cardgrid">
+        {{- range (where site.Home.Sections "Params.hidden" "!=" true).ByWeight -}}
+        <a class="card card--domain" href="{{ .RelPermalink }}">
+            <span class="card__kind">{{ with .Params.icon }}{{ . }} {{ end }}{{ .Title }}</span>
+            {{- with .Params.description }}<p class="card__desc">{{ . | markdownify }}</p>{{ end -}}
+            <span class="card__meta">{{ len .RegularPagesRecursive }} fiches →</span>
+        </a>
+        {{- end -}}
+    </div>
+
+    {{- $recent := first 6 (where site.RegularPages "Params.hidden" "!=" true).ByLastmod.Reverse -}}
+    {{- with $recent -}}
+    <h2 class="home__h2">// derniers ajouts</h2>
+    <ul class="pagelist">
+        {{- range . -}}
+        <li class="pagelist__item">
+            <a class="pagelist__link" href="{{ .RelPermalink }}">{{ .Title }}</a>
+            {{- with .Parent }}{{ if not .IsHome }}<span class="pagelist__section">{{ .Title }}</span>{{ end }}{{ end -}}
+        </li>
+        {{- end -}}
+    </ul>
+    {{- end -}}
+</section>
+{{ end }}

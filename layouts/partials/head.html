@@ -1,0 +1,46 @@
+<title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}</title>
+{{ with site.Params.about }}<meta name="description" content="{{ .description | markdownify | plainify }}">{{ end }}
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8"/>
+{{ if site.Params.noindex }}<meta name="robots" content="noindex" />{{ end }}
+
+<!-- Police monospace (aura) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400&display=swap">
+
+<!-- FontAwesome <https://fontawesome.com/> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<!-- Academicons <https://jpswalsh.github.io/academicons/> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.4/css/academicons.min.css" integrity="sha512-IW0nhlW5MgNydsXJO40En2EoCkTTjZhI3yuODrZIc8cQ4h1XcF53PsqDHa09NqnkXuIe0Oiyyj171BqZFwISBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<!-- risotto theme + palette + overrides -->
+<link rel="stylesheet" href="{{ printf "css/palettes/%s.css" (site.Params.theme.palette | default "base16-dark") | absURL }}">
+<link rel="stylesheet" href="{{ "css/risotto.css" | absURL }}">
+<link rel="stylesheet" href="{{ "css/custom.css" | absURL }}">
+
+<!-- favicon -->
+{{ if os.FileExists "static/favicon.svg" }}<link rel="icon" type="image/svg+xml" href="{{ "favicon.svg" | absURL }}">{{ end }}
+{{ if os.FileExists "static/favicon.ico" }}<link rel="icon" href="{{ "favicon.ico" | absURL }}">{{ end }}
+{{ if os.FileExists "static/favicon-32x32.png" }}<link rel="icon" type="image/png" sizes="32x32" href="{{ "favicon-32x32.png" | absURL }}">{{ end }}
+{{ if os.FileExists "static/favicon-16x16.png" }}<link rel="icon" type="image/png" sizes="16x16" href="{{ "favicon-16x16.png" | absURL }}">{{ end }}
+{{ if os.FileExists "static/apple-touch-icon.png" }}<link rel="apple-touch-icon" href="{{ "apple-touch-icon.png" | absURL }}">{{ end }}
+{{ if os.FileExists "static/site.webmanifest" }}<link rel="manifest" href="{{ "site.webmanifest" | absURL }}">{{ end }}
+
+<!-- RSS -->
+{{ with .OutputFormats.Get "rss" -}}
+  {{ printf `<link rel=%q type=%q href=%q title=%q>` .Rel .MediaType.Type .Permalink site.Title | safeHTML }}
+{{ end }}
+
+<!-- Open Graph -->
+<meta property="og:title" content="{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="{{ .Permalink }}" />
+{{ if .Description }}
+  <meta property="og:description" content="{{ .Description }}" />
+{{ else }}{{ with site.Params.about }}
+  <meta property="og:description" content="{{ .description | markdownify | plainify }}" />
+{{ end }}{{ end }}
+{{ with site.LanguageCode }}<meta property="og:locale" content="{{ . }}" />{{ end }}

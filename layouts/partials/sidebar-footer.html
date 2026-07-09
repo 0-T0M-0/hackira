@@ -1,0 +1,9 @@
+<div class="sidebar-footer">
+    {{- with site.Params.socialLinks -}}
+    <ul class="sociallinks" aria-label="Liens">
+        {{- range . -}}
+        <li><a href="{{ .url }}" rel="me" title="{{ .title }}" aria-label="{{ .title }}"><i class="{{ .icon }}" aria-hidden="true"></i></a></li>
+        {{- end -}}
+    </ul>
+    {{- end -}}
+</div>

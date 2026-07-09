@@ -1,0 +1,7 @@
+<div class="brand">
+    <a class="brand__logo" href="{{ site.Home.RelPermalink }}">
+        {{- with site.Params.about.logo }}<span class="brand__emoji" aria-hidden="true">{{ . }}</span> {{ end -}}
+        <span class="brand__name">{{ site.Title }}</span><span class="brand__cursor" aria-hidden="true"></span>
+    </a>
+    {{- with site.Params.about.description }}<p class="brand__desc">{{ . | markdownify }}</p>{{ end -}}
+</div>

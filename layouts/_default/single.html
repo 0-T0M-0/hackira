@@ -1,0 +1,15 @@
+{{ define "main" }}
+<article class="doc">
+    <header class="doc__header">
+        {{- partial "breadcrumbs.html" . -}}
+        <h1 class="doc__title">{{ .Title | markdownify }}</h1>
+        {{- with .Params.description }}<p class="doc__desc">{{ . | markdownify }}</p>{{ end -}}
+    </header>
+
+    <div class="doc__body">
+        {{ .Content }}
+    </div>
+
+    {{- partial "docnav.html" . -}}
+</article>
+{{ end }}

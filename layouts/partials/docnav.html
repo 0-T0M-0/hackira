@@ -1,0 +1,12 @@
+{{- $prev := .PrevInSection -}}
+{{- $next := .NextInSection -}}
+{{- if or $prev $next -}}
+<nav class="docnav" aria-label="Pages voisines">
+    <span class="docnav__slot docnav__slot--prev">
+        {{- with $prev }}<a class="docnav__link" href="{{ .RelPermalink }}"><span class="docnav__dir">← précédent</span><span class="docnav__title">{{ .Title }}</span></a>{{ end -}}
+    </span>
+    <span class="docnav__slot docnav__slot--next">
+        {{- with $next }}<a class="docnav__link" href="{{ .RelPermalink }}"><span class="docnav__dir">suivant →</span><span class="docnav__title">{{ .Title }}</span></a>{{ end -}}
+    </span>
+</nav>
+{{- end -}}

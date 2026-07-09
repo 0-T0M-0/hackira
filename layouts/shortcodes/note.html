@@ -1,0 +1,5 @@
+{{- /* Encadre. Parametre type = info | tip | warn. Corps rendu en Markdown. */ -}}
+{{- $type := .Get 0 | default (.Get "type") | default "info" -}}
+<div class="callout callout--{{ $type }}">
+    <div class="callout__body">{{ .Inner | markdownify }}</div>
+</div>
