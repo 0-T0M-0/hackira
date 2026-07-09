@@ -1,9 +1,8 @@
 +++
 title = "Informatique"
-description = "Les fondations : systèmes, réseaux, développement, outils du quotidien."
+description = "Systèmes, réseaux, développement, outils."
 weight = 10
 icon = "💻"
 +++
 
-Les bases solides, côté machine et côté code. De quoi être à l'aise dans un
-terminal avant d'aller plus loin.
+Les ressources en dev.
