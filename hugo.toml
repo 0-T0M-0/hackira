@@ -5,13 +5,13 @@
 # baseURL : le workflow GitHub Pages la remplace automatiquement au build
 # (--baseURL), donc la valeur ci-dessous ne sert qu'au dev local.
 # En prod, l'URL sera du type https://<user>.github.io/<nom-du-repo>/
-baseURL = "https://example.github.io/grimoire/"
+baseURL = "https://example.github.io/hackira/"
 
 languageCode = "fr"
 defaultContentLanguage = "fr"
 
 # >>> À PERSONNALISER : le nom du projet (s'affiche dans le logo + les onglets)
-title = "grimoire"
+title = "hackira"
 
 theme = "risotto"
 
@@ -37,8 +37,8 @@ summaryLength = 20
   noindex = false
   # Lien "éditer cette page" (pratique à deux). Laisse vide pour le masquer.
   # >>> À PERSONNALISER : remplace par l'URL de ton repo.
-  editURL = "https://github.com/USER/grimoire/edit/main/content/"
-  repoURL = "https://github.com/USER/grimoire"
+  editURL = "https://github.com/USER/hackira/edit/main/content/"
+  repoURL = "https://github.com/USER/hackira"
 
   [params.theme]
     # Palette par défaut (voir static/css/palettes/ et le README pour la liste).
@@ -47,7 +47,7 @@ summaryLength = 20
 
   # Bloc "marque" en haut de la barre latérale gauche
   [params.about]
-    title = "grimoire"
+    title = "hackira"
     description = "Veille **info** · **cyber** · **IA**. Repos, outils et liens, rangés."
     # Logo emoji (ou logo_image = \"img/logo.svg\" pour une image dans static/)
     logo = "📖"
@@ -58,7 +58,7 @@ summaryLength = 20
 [[params.socialLinks]]
   icon = "fa-brands fa-github"
   title = "GitHub"
-  url = "https://github.com/USER/grimoire"
+  url = "https://github.com/USER/hackira"
 
 [[params.socialLinks]]
   icon = "fa-solid fa-rss"
