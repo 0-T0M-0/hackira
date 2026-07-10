@@ -12,6 +12,6 @@ De quoi faire de jolis rapports et rendus.
 
 ## Markdown
 
-{{< resource title="Awesome-design" url="[https://github.com/VoltAgent/awesome-design-md](https://github.com/VoltAgent/awesome-design-md)" type="ressource" tags="markdown, design" >}}
+{{< resource title="Awesome-design" url="https://github.com/VoltAgent/awesome-design-md" type="ressource" tags="markdown, design" >}}
 Une base de données de DESIGN.md reprenant la DA de grandes enseignes.
 {{< /resource >}}
