@@ -11,6 +11,6 @@ Pour les passionnés de l'assembleur.
 
 ## Ressources
 
-{{< resource title="TryHackMe" url="https://github.com/ZX41R/awesome-reverse-engineering-and-malware-analysis" type="ressource" tags="malware, obfuscation" >}}
+{{< resource title="Unpacked" url="https://github.com/ZX41R/awesome-reverse-engineering-and-malware-analysis" type="ressource" tags="malware, obfuscation" >}}
 Une bonne BDD de ressources.
 {{< /resource >}}
