@@ -1,9 +1,8 @@
 +++
 title = "IA"
-description = "LLM, apprentissage automatique, et de quoi construire pour de vrai."
+description = "LLM, apprentissage automatique."
 weight = 30
 icon = "🤖"
 +++
 
-Pour comprendre les modèles et surtout les faire tourner. Théorie utile, outils
-concrets, et ressources pour passer à la pratique.
+Ce qui concerne l'IA, les outils liés, les modèles.
