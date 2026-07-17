@@ -14,3 +14,9 @@ Pour les passionnés de l'assembleur.
 {{< resource title="Unpacked" url="https://github.com/ZX41R/awesome-reverse-engineering-and-malware-analysis" type="ressource" tags="malware, obfuscation" >}}
 Une bonne BDD de ressources.
 {{< /resource >}}
+
+
+
+{{< resource title="Insert" url="https://github.com/uellenberg/Insert" type="ressource" tags="malware, obfuscation" >}}
+Du code auto-modifiant, ça semble banger.
+{{< /resource >}}
