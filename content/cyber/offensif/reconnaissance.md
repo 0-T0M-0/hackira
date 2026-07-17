@@ -13,5 +13,9 @@ toc = true
 Collecte d'e-mails, sous-domaines et hôtes à partir de sources ouvertes.
 {{< /resource >}}
 
-## Scan réseau
+## Pentest
+
+{{< resource title="AD-PathFinder" url="https://github.com/NetSPI/AD-PathFinder" type="repo" tags="reco, pentest" >}}
+Attack mapping tool for pentesters and red teamers
+{{< /resource >}}
 
